@@ -47,7 +47,7 @@ The enumeration revealed an /assets directory. Manual exploration of different U
 
 ## Initial Access
 
-Further investigation of the /assets directory led to the discovery of `/assets/index.php`. Testing for command injection by appending `?cmd=whoami` resulted in a successful output :
+Further investigation of the /assets directory led to the discovery of `/assets/index.php`. Testing for command injection by appending `?cmd=whoami` resulted in a successful output :<br>
 ![](https://i.imgur.com/wuBEKc4.png)
 
 The output d3d3LWRhdGEK was identified as Base64 encoded. Decoding it confirmed the user identity as www-data.
@@ -59,7 +59,7 @@ Echo d3d3LWRhdGEK | base64 -d
 Recognizing the potential for a reverse shell, a payload was generated using an online reverse shell generator :
 ![](https://i.imgur.com/PdKW9Pk.png)
 
-A Netcat listener was set up to capture the connection. After executing the payload via the URL parameter, a connection was successfully established :
+A Netcat listener was set up to capture the connection. After executing the payload via the URL parameter, a connection was successfully established :<br>
 ![](https://i.imgur.com/xlF7Ekm.png)
 
 ## Lateral Movement
@@ -87,7 +87,7 @@ Using steghide and the previously recovered passphrase, a hidden file named `cre
 The creds.txt file revealed the password for the user deku.
 ![](https://i.imgur.com/UXTK1tf.png)
 
-Using these credentials, a successful SSH login to the deku account was achieved. The first flag, `user.txt`, was located and captured in the home directory :
+Using these credentials, a successful SSH login to the deku account was achieved. The first flag, `user.txt`, was located and captured in the home directory :<br>
 ![](https://i.imgur.com/QsBuBTY.png)
 
 
@@ -100,7 +100,7 @@ sudo ./feedback.sh
 ```
 ![](https://i.imgur.com/fB2xurj.png)
 
-This exploit successfully granted root user permissions :
+This exploit successfully granted root user permissions :<br>
 ![](https://i.imgur.com/Y95e6Iu.png)
 
 Finally, the root directory was accessed, and the final flag root.txt was retrieved :
