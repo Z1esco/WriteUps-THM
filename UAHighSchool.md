@@ -39,7 +39,6 @@ To identify hidden directories, a directory brute-force scan was performed using
 ```
 feroxbuster -u http:10.49.170.113/ -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt
 ```
-
 and found a bunch of pages :
 ![](https://i.imgur.com/Z1nopVS.png)
 
@@ -48,7 +47,7 @@ The enumeration revealed an /assets directory. Manual exploration of different U
 
 ## Initial Access
 
-Further investigation of the /assets directory led to the discovery of /assets/index.php. Testing for command injection by appending ?cmd=whoami resulted in a successful output :
+Further investigation of the /assets directory led to the discovery of `/assets/index.php`. Testing for command injection by appending `?cmd=whoami` resulted in a successful output :
 ![](https://i.imgur.com/wuBEKc4.png)
 
 The output d3d3LWRhdGEK was identified as Base64 encoded. Decoding it confirmed the user identity as www-data.
@@ -82,18 +81,18 @@ Steganography tools were employed to check for hidden data.
 steghide extract -sf oneforall.jpg
 ```
 
-Using steghide and the previously recovered passphrase, a hidden file named **creds.txt** was successfully extracted from **oneforall.jpg**.
+Using steghide and the previously recovered passphrase, a hidden file named `creds.txt` was successfully extracted from `oneforall.jpg`.
 ![](https://i.imgur.com/iRlLmAn.png)
 
 The creds.txt file revealed the password for the user deku.
 ![](https://i.imgur.com/UXTK1tf.png)
 
-Using these credentials, a successful SSH login to the deku account was achieved. The first flag, **user.txt**, was located and captured in the home directory :
+Using these credentials, a successful SSH login to the deku account was achieved. The first flag, `user.txt`, was located and captured in the home directory :
 ![](https://i.imgur.com/QsBuBTY.png)
 
 
 ## Privilege Escalation
-To identify privilege escalation vectors, the **sudo -l** command was executed. The output showed that the user could run **/opt/NewComponent/feedback.sh**. 
+To identify privilege escalation vectors, the `sudo -l` command was executed. The output showed that the user could run `/opt/NewComponent/feedback.sh`. 
 
 The script was found to be vulnerable to command injection. By manipulating the input during the feedback prompt, permissions were modified to allow access.
 ```
