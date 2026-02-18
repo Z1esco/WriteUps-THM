@@ -39,7 +39,7 @@ To identify hidden directories, a directory brute-force scan was performed using
 ```
 feroxbuster -u http:10.49.170.113/ -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt
 ```
-and found a bunch of pages :
+and found a bunch of pages :<br>
 ![](https://i.imgur.com/Z1nopVS.png)
 
 The enumeration revealed an /assets directory. Manual exploration of different URLs uncovered a generic forbidden page at /assets/images :
